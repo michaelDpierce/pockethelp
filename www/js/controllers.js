@@ -35,8 +35,8 @@ angular.module('ionicParseApp.controllers', [])
     }
 })
 
-.controller('HomeController', function($scope, $state, $rootScope, $cordovaGeolocation) {
-
+.controller('HomeController', function($scope, $state, $rootScope, $cordovaGeolocation, mapboxService) {
+    mapboxService.init({ accessToken: 'pk.eyJ1IjoibWF0Y2htaWtlMTMxMyIsImEiOiJlNWIzMWZkMWMzMTVhMTU4ZTU5Njk1YzllNmZlZjIzYiJ9.o7ugJ1UbmcfDmDrl8i7l4Q' });
     if (!$rootScope.isLoggedIn) {
         $state.go('welcome');
     }
@@ -81,7 +81,7 @@ angular.module('ionicParseApp.controllers', [])
     $scope.showMap = false;
     L.mapbox.accessToken = 'pk.eyJ1IjoibWF0Y2htaWtlMTMxMyIsImEiOiJlNWIzMWZkMWMzMTVhMTU4ZTU5Njk1YzllNmZlZjIzYiJ9.o7ugJ1UbmcfDmDrl8i7l4Q';
     $scope.currentLocation = function () {
-        $scope.showMap = true;
+        $scope.showMap = !$scope.showMap;
         var posOptions = {timeout: 10000, enableHighAccuracy: true};
         $cordovaGeolocation
           .getCurrentPosition(posOptions)

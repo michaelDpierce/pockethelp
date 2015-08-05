@@ -1,5 +1,5 @@
 angular.module('ionicParseApp',
-        [ 'ionic', 'ionicParseApp.controllers', 'ngCordova']
+        [ 'ionic', 'ionicParseApp.controllers', 'ngCordova', 'angular-mapbox']
     )
     .config(function($stateProvider, $urlRouterProvider) {
         $stateProvider
