@@ -78,16 +78,26 @@ angular.module('ionicParseApp.controllers', [])
 })
 
 .controller('HelpController', function($scope, $cordovaGeolocation) {
+    $scope.showMap = false;
     L.mapbox.accessToken = 'pk.eyJ1IjoibWF0Y2htaWtlMTMxMyIsImEiOiJlNWIzMWZkMWMzMTVhMTU4ZTU5Njk1YzllNmZlZjIzYiJ9.o7ugJ1UbmcfDmDrl8i7l4Q';
     $scope.currentLocation = function () {
         $scope.showMap = true;
-        var posOptions = {timeout: 10000, enableHighAccuracy: false};
+        var posOptions = {timeout: 10000, enableHighAccuracy: true};
         $cordovaGeolocation
           .getCurrentPosition(posOptions)
           .then(function (position) {
             var lat  = position.coords.latitude
             var long = position.coords.longitude
-            var map = L.mapbox.map('map-one', 'mapbox.streets').setView([lat,long], 18);
+
+            var map = L.mapbox.map('map-one', 'mapbox.streets', {
+              zoomControl: false
+            }).setView([lat,long], 16);
+
+            map.dragging.disable();
+            map.touchZoom.disable();
+            map.doubleClickZoom.disable();
+            map.scrollWheelZoom.disable();
+
             var geojson = {
               "type": "FeatureCollection",
               "features": [
