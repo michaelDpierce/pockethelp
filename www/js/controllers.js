@@ -64,6 +64,10 @@ angular.module('ionicParseApp.controllers', [])
     };
 })
 
+.controller('HelpController', function($scope, $state, $rootScope) {
+
+})
+
 .controller('LoginController', function($scope, $state, $rootScope, $ionicLoading) {
     $scope.user = {
         username: null,

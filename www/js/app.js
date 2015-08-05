@@ -26,6 +26,16 @@ angular.module('ionicParseApp',
                 }
             })
 
+            .state('app.help', {
+                url: '/help',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/help.html',
+                        controller: 'HelpController'
+                    }
+                }
+            })
+
             .state('app.settings', {
                 url: '/settings',
                 views: {
