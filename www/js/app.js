@@ -39,6 +39,16 @@ angular.module('ionicParseApp',
                 }
             })
 
+            .state('app.settings', {
+                url: '/settings',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/settings.html',
+                        controller: 'HomeController'
+                    }
+                }
+            })
+
             .state('app.login', {
                 url: '/login',
                 views: {
