@@ -1,21 +1,8 @@
-// Ionic Parse Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'ionicParseApp' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'ionicParseApp.controllers' is found in controllers.js
 angular.module('ionicParseApp',
         [ 'ionic', 'ionicParseApp.controllers' ]
     )
     .config(function($stateProvider, $urlRouterProvider) {
-
-        // Ionic uses AngularUI Router which uses the concept of states
-        // Learn more here: https://github.com/angular-ui/ui-router
-        // Set up the various states which the app can be in.
-        // Each state's controller can be found in controllers.js
         $stateProvider
-
-            // setup an abstract state for the tabs directive
             .state('welcome', {
                 url: '/welcome?clear',
                 templateUrl: 'templates/welcome.html',

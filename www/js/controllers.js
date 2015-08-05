@@ -40,6 +40,28 @@ angular.module('ionicParseApp.controllers', [])
     if (!$rootScope.isLoggedIn) {
         $state.go('welcome');
     }
+
+    $scope.updateUser = function () {
+        var user = $scope.user;
+        user.set("username", user.attributes.username);
+        user.set("email", user.attributes.username);
+        user.set("password", user.attributes.password);
+        user.save()
+        .then(
+          function(user) {
+            return user.fetch();
+            Parse.User.logIn(user.email, user.password);
+          }
+        )
+        .then(
+          function(user) {
+            console.log('User Updated', user);
+          },
+          function(error) {
+            console.log('Something went wrong', error);
+          }
+        );
+    };
 })
 
 .controller('LoginController', function($scope, $state, $rootScope, $ionicLoading) {
