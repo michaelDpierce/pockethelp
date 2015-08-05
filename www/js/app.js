@@ -1,5 +1,5 @@
 angular.module('ionicParseApp',
-        [ 'ionic', 'ionicParseApp.controllers' ]
+        [ 'ionic', 'ionicParseApp.controllers', 'ngCordova']
     )
     .config(function($stateProvider, $urlRouterProvider) {
         $stateProvider
@@ -32,6 +32,16 @@ angular.module('ionicParseApp',
                     'menuContent': {
                         templateUrl: 'templates/help.html',
                         controller: 'HelpController'
+                    }
+                }
+            })
+
+            .state('app.contacts', {
+                url: '/contacts',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/contacts.html',
+                        controller: 'ContactsController'
                     }
                 }
             })
