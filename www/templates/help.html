@@ -35,13 +35,17 @@
       <li class='item item-toggle'>
          SEND LOCATION
          <label class='toggle toggle-royal'>
-           <input type='checkbox'>
+           <input type='checkbox' ng-click='currentLocation()'>
            <div class='track'>
              <div class='handle'></div>
            </div>
          </label>
       </li>
     </ul>
+
+    {{latitude}}<br>
+    {{longitude}}
+
 
     <button class='button button-full button-royal'>
       REQUEST HELP

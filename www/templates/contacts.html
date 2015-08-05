@@ -11,13 +11,13 @@
         <span style='float:right;'>2 of 2 Slots</span>
       </div>
     </div>
-    <button class='button button-clear button-royal'>
+<!--     <button class='button button-clear button-royal'>
       Purchase Additional Slots
-    </button>
+    </button> -->
 
     <h4>ADD CONTACTS</h4>
     <div class='padding'>
-      <button class='button button-block button-royal' ng-click='getContacts()'>
+      <button class='button button-block button-royal' ng-click='getContacts()' ng-hide='phoneContacts'>
         Get My Contacts
       </button>
       <div class='list' ng-show='phoneContacts' ng-repeat='contact in phoneContacts'>

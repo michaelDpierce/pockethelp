@@ -35,7 +35,7 @@ angular.module('ionicParseApp.controllers', [])
     }
 })
 
-.controller('HomeController', function($scope, $state, $rootScope) {
+.controller('HomeController', function($scope, $state, $rootScope, $cordovaGeolocation) {
 
     if (!$rootScope.isLoggedIn) {
         $state.go('welcome');
@@ -62,10 +62,37 @@ angular.module('ionicParseApp.controllers', [])
           }
         );
     };
+
+    $scope.allowLocation = function () {
+        var posOptions = {timeout: 10000, enableHighAccuracy: false};
+        $cordovaGeolocation
+          .getCurrentPosition(posOptions)
+          .then(function (position) {
+            var lat  = position.coords.latitude
+            var long = position.coords.longitude
+          }, function(err) {
+            // error
+          });
+    };
+
 })
 
-.controller('HelpController', function($scope, $state, $rootScope) {
-
+.controller('HelpController', function($scope, $cordovaGeolocation) {
+    $scope.currentLocation = function () {
+        var posOptions = {timeout: 10000, enableHighAccuracy: false};
+        $cordovaGeolocation
+          .getCurrentPosition(posOptions)
+          .then(function (position) {
+            var lat  = position.coords.latitude
+            var long = position.coords.longitude
+            console.log(lat);
+            console.log(long);
+            $scope.latitude = lat;
+            $scope.longitude = long;
+          }, function(err) {
+            // error
+          });
+    };
 })
 
 .controller('ContactsController', function($scope, $state, $rootScope, $cordovaContacts, $ionicPlatform) {
