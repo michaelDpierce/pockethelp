@@ -78,21 +78,45 @@ angular.module('ionicParseApp.controllers', [])
 })
 
 .controller('HelpController', function($scope, $cordovaGeolocation) {
+    L.mapbox.accessToken = 'pk.eyJ1IjoibWF0Y2htaWtlMTMxMyIsImEiOiJlNWIzMWZkMWMzMTVhMTU4ZTU5Njk1YzllNmZlZjIzYiJ9.o7ugJ1UbmcfDmDrl8i7l4Q';
     $scope.currentLocation = function () {
+        $scope.showMap = true;
         var posOptions = {timeout: 10000, enableHighAccuracy: false};
         $cordovaGeolocation
           .getCurrentPosition(posOptions)
           .then(function (position) {
             var lat  = position.coords.latitude
             var long = position.coords.longitude
-            console.log(lat);
-            console.log(long);
-            $scope.latitude = lat;
-            $scope.longitude = long;
+            var map = L.mapbox.map('map-one', 'mapbox.streets').setView([lat,long], 18);
+            var geojson = {
+              "type": "FeatureCollection",
+              "features": [
+                {
+                  "type": "Feature",
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      long,
+                      lat
+                    ]
+                  },
+                  "properties": {
+                    "title": "HELP",
+                    "marker-color": "#C50502",
+                    "marker-size": "medium",
+                  }
+                }
+              ]
+            }
+
+            var myLayer = L.mapbox.featureLayer().addTo(map);
+            myLayer.setGeoJSON(geojson);
           }, function(err) {
             // error
           });
     };
+
+
 })
 
 .controller('ContactsController', function($scope, $state, $rootScope, $cordovaContacts, $ionicPlatform) {

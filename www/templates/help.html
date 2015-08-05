@@ -30,7 +30,6 @@
       <a class='button'>LEVEL III</a>
     </div>
     <br>
-
     <ul class='list'>
       <li class='item item-toggle'>
          SEND LOCATION
@@ -42,11 +41,7 @@
          </label>
       </li>
     </ul>
-
-    {{latitude}}<br>
-    {{longitude}}
-
-
+    <div ng-show='showMap' id='map-one' class='map'> </div>
     <button class='button button-full button-royal'>
       REQUEST HELP
     </button>
